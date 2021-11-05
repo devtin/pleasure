@@ -1,6 +1,6 @@
 {
   "name": "pleasure",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a 'frustration-free' RESTful framework based on a Domain-Driven-Design architecture",
   "main": "pleasure.js",
   "bin": {

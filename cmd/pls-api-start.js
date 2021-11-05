@@ -43,16 +43,10 @@ async function start () {
     di: config.api.di,
     withSwagger: config.api.withSwagger
   }, {
-    duckStorageSettings: {
-      plugins: [{
-        name: DuckStorageMongo.name,
-        handler: DuckStorageMongo.handler({
-          credentials: config.api.mongodbUri,
-          dbName: getDbName()
-        })
-      }],
-      setupIpc: false
-    }
+    duckStorageSettings: config.api.duckStorageSettings,
+    plugins: config.api.plugins,
+    socketIOSettings: config.api.socketIOSettings,
+    customErrorHandling: config.api.customErrorHandling,
   })
 
   console.log('listo')
