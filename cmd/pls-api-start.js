@@ -1,9 +1,22 @@
 const { apiSetup } = require('duck-api');
 const Koa = require('koa');
+const fs = require('fs');
+const path = require('path');
 
 const config = require('../lib/config.js')
 
 console.log(JSON.stringify({ config }, null, 2))
+
+const triggerMain = (di) => {
+  if (!fs.existsSync(config.mainFile)) {
+    // todo: debug main file was not found
+    return
+  }
+
+  const mainModule = require(config.mainFile)
+
+  return mainModule(di)
+}
 
 async function start () {
   const app = new Koa()
@@ -12,7 +25,7 @@ async function start () {
 
   const server = app.listen(config.api.port, config.api.host)
 
-  await apiSetup({
+  const { di } = await apiSetup({
     app,
     server,
     routesDir: config.api.routes,
@@ -34,7 +47,8 @@ async function start () {
     customErrorHandling: config.api.customErrorHandling,
   })
 
-  console.log('listo')
+  await triggerMain(di)
+  console.log('pleasure started')
 }
 
 start()

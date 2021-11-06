@@ -41,13 +41,12 @@ const gatewayToTsDescriptor = (domain, domainName) => {
 const makeClient = async () => {
   const domainObj = await jsDirIntoJson(config.api.domain)
   const description = []
-  console.log({ domainObj })
+
   Object.entries(domainObj).forEach(([domainName, domainValue]) => {
     description.push(gatewayToTsDescriptor(domainValue, upperCamelCase(`${domainName}Gateway`)))
     description.push(schemaAsTsClass(Schema.ensureSchema(domainValue.model.schema), upperCamelCase(domainName)))
   })
   await outputFile(path.join(config.client.output, 'index.d.ts'), description.join('\n'))
-  console.log('done!')
 }
 
 makeClient()
