@@ -1,22 +1,7 @@
 const { apiSetup } = require('duck-api');
-const DuckStorageMongo = require('duck-storage-mongodb');
 const Koa = require('koa');
 
 const config = require('../lib/config.js')
-
-const getDbName = () => {
-  // todo: grab name from package.json
-  const withPrefix = (dbName) => (`${config.name}-${dbName}`)
-  if (process.env.NODE_ENV === 'production') {
-    return withPrefix('production')
-  }
-
-  if (process.env.NODE_ENV === 'test') {
-    return withPrefix('test')
-  }
-
-  return withPrefix('staging')
-}
 
 console.log(JSON.stringify({ config }, null, 2))
 
