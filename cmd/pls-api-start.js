@@ -1,11 +1,19 @@
 const { apiSetup } = require('duck-api');
 const Koa = require('koa');
 const fs = require('fs');
-const path = require('path');
 
 const config = require('../lib/config.js')
 
-console.log(JSON.stringify({ config }, null, 2))
+const triggerInit = async () => {
+  if (!fs.existsSync(config.initFile)) {
+    // todo: debug main file was not found
+    return
+  }
+
+  const mainModule = require(config.initFile)
+
+  return mainModule()
+}
 
 const triggerMain = (di) => {
   if (!fs.existsSync(config.mainFile)) {
@@ -19,6 +27,8 @@ const triggerMain = (di) => {
 }
 
 async function start () {
+  await triggerInit()
+
   const app = new Koa()
 
   app.keys = config.api.cookies.keys;
