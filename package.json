@@ -1,6 +1,6 @@
 {
   "name": "pleasure",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a 'frustration-free' RESTful framework based on a Domain-Driven-Design architecture",
   "main": "pleasure.js",
   "bin": {
@@ -12,15 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^8.2.0",
+    "commander": "^8.3.0",
     "deepmerge": "^4.2.2",
     "dotenv": "^10.0.0",
-    "duck-api": "^0.0.29",
+    "duck-api": "^0.0.30",
     "duck-storage-mongodb": "0.0.10",
     "fs-extra": "^10.0.0",
     "is-plain-object": "^5.0.0",
     "js-dir-into-json": "^2.7.1",
-    "koa": "^2.13.3",
+    "koa": "^2.13.4",
     "koa-logger": "^3.2.1",
     "lodash": "^4.17.21",
     "ramda": "^0.27.1"
