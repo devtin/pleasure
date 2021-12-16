@@ -10,9 +10,9 @@ const triggerInit = async () => {
     return
   }
 
-  const mainModule = require(config.initFile)
+  const initModule = require(config.initFile)
 
-  return mainModule()
+  return initModule()
 }
 
 const triggerMain = (di) => {
